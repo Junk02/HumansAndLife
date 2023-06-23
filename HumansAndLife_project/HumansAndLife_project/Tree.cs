@@ -12,7 +12,7 @@ namespace HumansAndLife_project
         public Tree()
         {
             symb = '^';
-            color = ConsoleColor.DarkGreen;
+            color = ConsoleColor.Green;
         }
     }
 }
