@@ -1,9 +1,6 @@
-﻿using Microsoft.Win32;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace HumansAndLife_project
 {
@@ -17,6 +14,31 @@ namespace HumansAndLife_project
             x_size = x;
             y_size = y;
             map = new Terrain[x_size, y_size];
+
+            for (int i = 0; i < x_size; i++)
+                for (int j = 0; j < y_size; j++)
+                    map[i, j] = new Terrain();
+        }
+
+        public void DrawMap()
+        {
+            for (int i = 0; i < x_size; i++)
+            {
+                for (int j = 0; j < y_size; j++)
+                {
+                    if (map[i, j].current_obj == null)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write('^');
+                    }
+                    else
+                    {
+
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

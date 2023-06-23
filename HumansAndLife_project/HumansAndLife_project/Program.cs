@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HumansAndLife_project
 {
@@ -10,6 +6,8 @@ namespace HumansAndLife_project
     {
         static void Main(string[] args)
         {
+            Map map = new Map(10, 20);
+            map.DrawMap();
         }
     }
 }
