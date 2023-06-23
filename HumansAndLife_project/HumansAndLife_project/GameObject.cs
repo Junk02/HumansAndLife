@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumansAndLife_project
 {
-    internal class Terrain
+    internal class GameObject
     {
-        GameObject current_obj;
     }
 }
