@@ -10,11 +10,13 @@ namespace HumansAndLife_project
     internal class Map
     {
         public int x_size, y_size;
+        public Terrain[,] map;
 
         public Map(int x, int y)
         {
             x_size = x;
             y_size = y;
+            map = new Terrain[x_size, y_size];
         }
     }
 }
