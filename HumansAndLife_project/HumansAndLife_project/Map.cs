@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Concurrent;
+using System.Runtime.InteropServices;
 
 namespace HumansAndLife_project
 {
@@ -45,7 +46,7 @@ namespace HumansAndLife_project
                     x++;
                     if (map[x, y].IsFree()) map[x, y].current_obj = new River();
 
-                    if (rand.Next(1, 6) == 1)
+                    if (rand.Next(1, 5) == 1)
                     {
                         int expansion_side = rand.Next(1, 3);
                         if (expansion_side == 1 && y > 1) y--;
@@ -71,7 +72,7 @@ namespace HumansAndLife_project
                     y++;
                     if (map[x, y].IsFree()) map[x, y].current_obj = new River();
 
-                    if (rand.Next(1, 6) == 1)
+                    if (rand.Next(1, 5) == 1)
                     {
                         int expansion_side = rand.Next(1, 3);
                         if (expansion_side == 1 && x > 1) x--;
@@ -79,6 +80,18 @@ namespace HumansAndLife_project
                     }
                 }
             }
+
+            for (int i = 1; i < x_size - 1; i++)
+                for (int j = 1; j < y_size - 1; j++)
+                {
+                    int kol = 0;
+                    if (!map[i - 1, j].IsFree() && map[i - 1, j].current_obj.GetType().Name == "River") kol++;
+                    if (!map[i + 1, j].IsFree() && map[i + 1, j].current_obj.GetType().Name == "River") kol++;
+                    if (!map[i, j - 1].IsFree() && map[i, j - 1].current_obj.GetType().Name == "River") kol++;
+                    if (!map[i, j + 1].IsFree() && map[i, j + 1].current_obj.GetType().Name == "River") kol++;
+
+                    if (kol > 2) map[i, j].current_obj = new River();
+                }
         }
 
         public void MakeTrees(int kol)
