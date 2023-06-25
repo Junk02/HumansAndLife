@@ -110,12 +110,27 @@ namespace HumansAndLife_project
             }
         }
 
-        public void DrawMap()
+        public void DrawMap(Player player, int coord_x = 0, int coord_y = 0)
         {
-            for (int i = 0; i < x_size; i++)
+            Console.SetCursorPosition(coord_x, coord_y);
+
+            int start_x = player.cam_x - player.cam_view, start_y = player.cam_y - player.cam_view;
+            int end_x = player.cam_x + player.cam_view, end_y = player.cam_y + player.cam_view;
+
+            if (player.cam_x - player.cam_view < 0) { start_x = 0; end_x = player.cam_x + player.cam_view; }
+            if (player.cam_y - player.cam_view < 0) { start_y = 0; end_y = player.cam_y + player.cam_view; }
+            if (player.cam_x + player.cam_view > x_size) { start_x = player.cam_x - player.cam_view; end_x = x_size; }
+            if (player.cam_y + player.cam_view > y_size) { start_y = player.cam_y - player.cam_view; end_y = y_size; }
+
+            for (int i = start_x; i < end_x; i++)
             {
-                for (int j = 0; j < y_size; j++)
+                for (int j = start_y; j < end_y; j++)
                 {
+                    if (i == player.cam_x && j == player.cam_y)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                    }
+
                     if (map[i, j].IsFree())
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -127,6 +142,7 @@ namespace HumansAndLife_project
                         Console.Write(map[i, j].current_obj.symb);
                     }
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Black;
                 }
                 Console.WriteLine();
             }
