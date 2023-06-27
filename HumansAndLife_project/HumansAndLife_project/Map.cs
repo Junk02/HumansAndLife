@@ -114,13 +114,39 @@ namespace HumansAndLife_project
         {
             Console.SetCursorPosition(coord_x, coord_y);
 
-            int start_x = player.cam_x - player.cam_view, start_y = player.cam_y - player.cam_view;
-            int end_x = player.cam_x + player.cam_view, end_y = player.cam_y + player.cam_view;
+            int start_x = 0, start_y = 0;
+            int end_x = 0, end_y = 0;
 
-            if (player.cam_x - player.cam_view < 0) { start_x = 0; end_x = player.cam_x + player.cam_view; }
-            if (player.cam_y - player.cam_view < 0) { start_y = 0; end_y = player.cam_y + player.cam_view; }
-            if (player.cam_x + player.cam_view > x_size) { start_x = player.cam_x - player.cam_view; end_x = x_size; }
-            if (player.cam_y + player.cam_view > y_size) { start_y = player.cam_y - player.cam_view; end_y = y_size; }
+            if (player.cam_x - player.cam_view > 0)
+            {
+                start_x = player.cam_x - player.cam_view;
+                end_x = player.cam_x + player.cam_view;
+            }
+            if (player.cam_x - player.cam_view < 0)
+            { 
+               start_x = 0;
+               end_x = player.cam_view + player.cam_view;
+            }
+            if (player.cam_y - player.cam_view > 0)
+            {
+                start_y = player.cam_y - player.cam_view;
+                end_y = player.cam_y + player.cam_view;
+            }
+            if (player.cam_y - player.cam_view < 0)
+            {
+                start_y = 0;
+                end_y = player.cam_view + player.cam_view;
+            }
+            if (player.cam_x + player.cam_view > x_size)
+            {
+                start_x = player.cam_x - player.cam_view;
+                end_x = x_size;
+            }
+            if (player.cam_y + player.cam_view > y_size)
+            {
+                start_y = player.cam_y - player.cam_view;
+                end_y = y_size;
+            }
 
             for (int i = start_x; i < end_x; i++)
             {
